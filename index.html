@@ -363,89 +363,6 @@
       color: var(--accent);
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(230px, 0.6fr);
-      gap: 16px;
-      align-items: start;
-    }
-
-    .gallery-preview {
-      margin: 0;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-    }
-
-    .gallery-preview img {
-      display: block;
-      width: 100%;
-      max-height: 560px;
-      object-fit: contain;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #ffffff;
-    }
-
-    .gallery-preview figcaption {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .gallery-title {
-      display: block;
-      color: var(--text);
-      font-weight: 750;
-    }
-
-    .gallery-thumbs {
-      display: grid;
-      gap: 9px;
-    }
-
-    .gallery-thumb {
-      display: grid;
-      grid-template-columns: 72px minmax(0, 1fr);
-      gap: 10px;
-      align-items: center;
-      width: 100%;
-      min-height: 76px;
-      padding: 8px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      color: var(--text);
-      text-align: left;
-      cursor: pointer;
-      font: inherit;
-      transition: transform 160ms ease, border-color 160ms ease;
-    }
-
-    .gallery-thumb:hover,
-    .gallery-thumb.is-active {
-      transform: translateY(-1px);
-      border-color: var(--accent);
-    }
-
-    .gallery-thumb img {
-      width: 72px;
-      height: 54px;
-      object-fit: contain;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #ffffff;
-    }
-
-    .gallery-thumb span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.35;
-    }
-
     .publication-list {
       display: grid;
       gap: 10px;
@@ -523,8 +440,7 @@
         grid-template-columns: 1fr;
       }
 
-      .header-top,
-      .gallery {
+      .header-top {
         grid-template-columns: 1fr;
       }
 
@@ -555,9 +471,9 @@
       </div>
 
       <div class="hero-actions" aria-label="Primary links">
-        <a href="#projects">View projects</a>
-        <a href="https://github.com/nsrilaxmi">See code</a>
-        <a href="#publications">Selected publications</a>
+        <a href="#projects">View Projects</a>
+        <a href="https://github.com/nsrilaxmi">Code on GitHub</a>
+        <a href="#publications">View Publications</a>
       </div>
 
       <nav class="quick-links" aria-label="Profile links">
@@ -639,56 +555,6 @@
       </div>
     </section>
 
-    <section id="gallery">
-      <h2>Figure Gallery</h2>
-      <div class="gallery">
-        <figure class="gallery-preview">
-          <img
-            data-gallery-image
-            src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png"
-            alt="Heatmap showing tumor microenvironment signature scores by tissue site and cell type">
-          <figcaption data-gallery-caption>
-            <span class="gallery-title">LUAD tumor microenvironment heatmap</span>
-            Signature scores summarized by tissue site and cell type.
-          </figcaption>
-        </figure>
-        <div class="gallery-thumbs" aria-label="Select a figure preview">
-          <button class="gallery-thumb is-active" type="button"
-            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png"
-            data-gallery-alt="Heatmap showing tumor microenvironment signature scores by tissue site and cell type"
-            data-gallery-title="LUAD tumor microenvironment heatmap"
-            data-gallery-text="Signature scores summarized by tissue site and cell type.">
-            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png" alt="">
-            <span>LUAD TME heatmap</span>
-          </button>
-          <button class="gallery-thumb" type="button"
-            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/signature_contrast_effect_sizes.png"
-            data-gallery-alt="Dot plot of sample-level tumor microenvironment signature contrast effect sizes"
-            data-gallery-title="Sample-level signature contrasts"
-            data-gallery-text="Exploratory effect sizes for selected tissue-site comparisons.">
-            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/signature_contrast_effect_sizes.png" alt="">
-            <span>Signature contrasts</span>
-          </button>
-          <button class="gallery-thumb" type="button"
-            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/celltype_composition_stacked_bar.png"
-            data-gallery-alt="Stacked bar plot showing cell-type composition across asthma airway samples"
-            data-gallery-title="Asthma airway composition"
-            data-gallery-text="Sample-level cell-type composition from allergen-challenged airway data.">
-            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/celltype_composition_stacked_bar.png" alt="">
-            <span>Airway composition</span>
-          </button>
-          <button class="gallery-thumb" type="button"
-            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/aec_signature_scores_by_condition.png"
-            data-gallery-alt="Airway epithelial signature scores by condition"
-            data-gallery-title="Airway epithelial signatures"
-            data-gallery-text="Condition-level epithelial remodeling signature preview.">
-            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/aec_signature_scores_by_condition.png" alt="">
-            <span>Epithelial signatures</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
     <section id="publications">
       <h2>Selected Publications</h2>
       <p>
@@ -725,6 +591,10 @@
 
     <section>
       <h2>Research Focus</h2>
+      <p>
+        My current interests center on using reproducible single-cell analysis to connect
+        immune and epithelial cell states with disease context.
+      </p>
       <div class="focus-grid">
         <div class="focus-item">Single-cell RNA-seq and multi-sample study design</div>
         <div class="focus-item">Immune and epithelial programs in airway disease</div>
@@ -734,7 +604,7 @@
     </section>
 
     <footer>
-      <p>Last updated 2026.</p>
+      <p>Personal research portfolio for Srilaxmi Nerella. Last updated 2026.</p>
     </footer>
   </main>
   <script>
@@ -767,19 +637,6 @@
 
     themeButton.addEventListener("click", () => {
       setTheme(document.body.classList.contains("dark") ? "light" : "dark");
-    });
-
-    const galleryImage = document.querySelector("[data-gallery-image]");
-    const galleryCaption = document.querySelector("[data-gallery-caption]");
-    const galleryThumbs = document.querySelectorAll("[data-gallery-src]");
-
-    galleryThumbs.forEach((thumb) => {
-      thumb.addEventListener("click", () => {
-        galleryThumbs.forEach((item) => item.classList.toggle("is-active", item === thumb));
-        galleryImage.src = thumb.dataset.gallerySrc;
-        galleryImage.alt = thumb.dataset.galleryAlt;
-        galleryCaption.innerHTML = `<span class="gallery-title">${thumb.dataset.galleryTitle}</span>${thumb.dataset.galleryText}`;
-      });
     });
 
   </script>
