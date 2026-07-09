@@ -96,6 +96,7 @@
 
     h1 {
       margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(2.3rem, 6vw, 4.1rem);
       line-height: 1.05;
       letter-spacing: 0;
@@ -131,6 +132,38 @@
     }
 
     .quick-links a:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-actions a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .hero-actions a:first-child {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .hero-actions a:hover {
       transform: translateY(-1px);
       border-color: var(--accent);
       color: var(--accent);
@@ -303,13 +336,6 @@
       color: var(--accent);
       font-size: 0.82rem;
       font-weight: 700;
-    }
-
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 8px 0 18px;
     }
 
     .filter-button {
@@ -534,37 +560,20 @@
       line-height: 1.55;
     }
 
-    .output-links {
+    .focus-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 10px;
       margin-top: 10px;
     }
 
-    .output-links a {
-      display: block;
-      min-height: 100%;
+    .focus-item {
       padding: 12px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
-      color: var(--text);
-      font-weight: 600;
-      transition: transform 160ms ease, border-color 160ms ease;
-    }
-
-    .output-links a:hover {
-      transform: translateY(-1px);
-      border-color: var(--accent);
-      text-decoration: none;
-    }
-
-    .output-links span {
-      display: block;
-      margin-top: 4px;
       color: var(--muted);
       font-size: 0.9rem;
-      font-weight: 400;
     }
 
     ul {
@@ -618,11 +627,18 @@
         <div>
           <h1>Srilaxmi Nerella</h1>
           <p class="tagline">
-            Single-cell genomics, translational bioinformatics, immune biology,
-            airway disease, cancer tumor microenvironments, and reproducible public-data analysis.
+            I work at the intersection of computational biology and translational research,
+            with a focus on single-cell RNA-seq, immune profiling, and reproducible
+            reanalysis of public disease datasets.
           </p>
         </div>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+      </div>
+
+      <div class="hero-actions" aria-label="Primary links">
+        <a href="#projects">View projects</a>
+        <a href="https://github.com/nsrilaxmi">See code</a>
+        <a href="#publications">Selected publications</a>
       </div>
 
       <nav class="quick-links" aria-label="Profile links">
@@ -633,30 +649,10 @@
       </nav>
     </header>
 
-    <section>
-      <h2>About</h2>
-      <p>
-        I work at the intersection of translational research and computational biology,
-        with interests in single-cell RNA-seq, immune profiling, public dataset reanalysis,
-        and reproducible workflows for understanding disease biology.
-      </p>
-      <p class="note">
-        This site collects selected analysis projects, code, and research interests.
-      </p>
-    </section>
-
-    <section>
+    <section id="projects">
       <h2>Featured Projects</h2>
-      <div class="filter-bar" aria-label="Filter projects">
-        <button class="filter-button is-active" type="button" data-filter="all">All</button>
-        <button class="filter-button" type="button" data-filter="single-cell">Single-cell</button>
-        <button class="filter-button" type="button" data-filter="airway">Airway</button>
-        <button class="filter-button" type="button" data-filter="cancer">Cancer</button>
-        <button class="filter-button" type="button" data-filter="workflow">Workflow</button>
-        <button class="filter-button" type="button" data-filter="signatures">Signatures</button>
-      </div>
       <div class="project-grid">
-        <article class="project" data-tags="single-cell airway workflow signatures">
+        <article class="project">
           <div class="project-copy">
             <span class="badge">Airway disease</span>
             <h3>
@@ -665,9 +661,8 @@
               </a>
             </h3>
             <p>
-              Reproducible reanalysis of allergen-challenged airway single-cell RNA-seq data,
-              focused on epithelial remodeling, immune signatures, sample-level composition,
-              and pseudo-bulk differential expression.
+              Independent reanalysis of allergen-challenged airway scRNA-seq data,
+              emphasizing epithelial remodeling, immune signatures, and donor-aware interpretation.
             </p>
             <ul class="project-meta" aria-label="Asthma project highlights">
               <li>GEO public dataset</li>
@@ -700,7 +695,7 @@
           </figure>
         </article>
 
-        <article class="project" data-tags="single-cell cancer workflow signatures">
+        <article class="project">
           <div class="project-copy">
             <span class="badge">Cancer TME</span>
             <h3>
@@ -709,9 +704,8 @@
               </a>
             </h3>
             <p>
-              Sample-aware reanalysis of a public lung adenocarcinoma scRNA-seq atlas,
-              including tissue-site composition, expression-based tumor microenvironment
-              signatures, subtype summaries, and paired-patient sensitivity checks.
+              Sample-aware analysis of a lung adenocarcinoma scRNA-seq atlas, focused on
+              tissue-site composition, tumor microenvironment signatures, and sensitivity checks.
             </p>
             <ul class="project-meta" aria-label="Cancer project highlights">
               <li>208k cells</li>
@@ -746,7 +740,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="gallery">
       <h2>Figure Gallery</h2>
       <div class="gallery">
         <figure class="gallery-preview">
@@ -796,7 +790,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="publications">
       <h2>Selected Publications</h2>
       <p>
         A compact set of recent and representative publications connected to fibrosis,
@@ -831,48 +825,13 @@
     </section>
 
     <section>
-      <h2>Reproducible Outputs</h2>
-      <p>
-        These projects emphasize readable code, documented assumptions, and small committed previews
-        that make the analysis reviewable without uploading large GEO data files.
-      </p>
-      <div class="output-links">
-        <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/tree/main/workflow">
-          Asthma workflow
-          <span>Snakemake file and workflow notes.</span>
-        </a>
-        <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/tree/main/workflow">
-          Cancer workflow
-          <span>Lightweight and full expression targets.</span>
-        </a>
-        <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/blob/main/docs/output_guide.md">
-          Output guide
-          <span>File-by-file guide to committed figures and tables.</span>
-        </a>
-        <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/blob/main/notebooks/01_dataset_overview.ipynb">
-          Example notebook
-          <span>Interactive overview for the LUAD dataset.</span>
-        </a>
+      <h2>Research Focus</h2>
+      <div class="focus-grid">
+        <div class="focus-item">Single-cell RNA-seq and multi-sample study design</div>
+        <div class="focus-item">Immune and epithelial programs in airway disease</div>
+        <div class="focus-item">Cancer tumor microenvironment analysis</div>
+        <div class="focus-item">Public GEO reanalysis and reproducible workflows</div>
       </div>
-    </section>
-
-    <section>
-      <h2>Research Interests</h2>
-      <ul>
-        <li>Single-cell RNA-seq and multi-sample study design</li>
-        <li>Immune and epithelial programs in airway disease</li>
-        <li>Cancer tumor microenvironment analysis</li>
-        <li>Public GEO dataset reanalysis and reproducible workflows</li>
-        <li>Method benchmarking for single-cell analysis</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Current Focus</h2>
-      <p>
-        I am building reproducible public-data analysis projects that connect biological questions
-        with careful sample-level study design, transparent code, and compact, reviewable outputs.
-      </p>
     </section>
 
     <section>
@@ -930,21 +889,6 @@
 
     themeButton.addEventListener("click", () => {
       setTheme(document.body.classList.contains("dark") ? "light" : "dark");
-    });
-
-    const filterButtons = document.querySelectorAll("[data-filter]");
-    const projects = document.querySelectorAll("[data-tags]");
-
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const selected = button.dataset.filter;
-        filterButtons.forEach((item) => item.classList.toggle("is-active", item === button));
-        projects.forEach((project) => {
-          const tags = project.dataset.tags.split(" ");
-          const show = selected === "all" || tags.includes(selected);
-          project.classList.toggle("is-hidden", !show);
-        });
-      });
     });
 
     const galleryImage = document.querySelector("[data-gallery-image]");
