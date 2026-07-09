@@ -44,6 +44,22 @@
       --accent: #0f5f6f;
       --accent-soft: #e5f3f5;
       --link: #174ea6;
+      --shadow: 0 14px 34px rgba(22, 32, 42, 0.08);
+      --focus: #8ab4f8;
+      --panel-soft: #fbfcfd;
+    }
+
+    body.dark {
+      --bg: #10151b;
+      --panel: #18212b;
+      --text: #e8eef5;
+      --muted: #a8b4c1;
+      --line: #2b3947;
+      --accent: #64c7d5;
+      --accent-soft: #173740;
+      --link: #91c4ff;
+      --shadow: 0 18px 42px rgba(0, 0, 0, 0.26);
+      --panel-soft: #141c25;
     }
 
     * {
@@ -56,6 +72,7 @@
       line-height: 1.6;
       color: var(--text);
       background: var(--bg);
+      transition: background 180ms ease, color 180ms ease;
     }
 
     main {
@@ -70,12 +87,19 @@
       margin-bottom: 42px;
     }
 
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
     h1 {
       margin: 0;
       font-size: clamp(2.3rem, 6vw, 4.1rem);
       line-height: 1.05;
       letter-spacing: 0;
-      color: #0f1720;
+      color: var(--text);
     }
 
     .tagline {
@@ -103,11 +127,41 @@
       color: var(--text);
       font-weight: 600;
       text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, color 160ms ease;
     }
 
     .quick-links a:hover {
+      transform: translateY(-1px);
       border-color: var(--accent);
       color: var(--accent);
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      transition: transform 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
     }
 
     section {
@@ -118,7 +172,7 @@
       margin: 0 0 14px;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--line);
-      color: #111827;
+      color: var(--text);
       font-size: 1.34rem;
       letter-spacing: 0;
     }
@@ -126,7 +180,7 @@
     h3 {
       margin: 0 0 7px;
       font-size: 1.08rem;
-      color: #111827;
+      color: var(--text);
     }
 
     p {
@@ -163,6 +217,16 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
+      box-shadow: var(--shadow);
+      transition: opacity 170ms ease, transform 170ms ease, box-shadow 170ms ease;
+    }
+
+    .project.is-hidden {
+      display: none;
+    }
+
+    .project:hover {
+      transform: translateY(-2px);
     }
 
     .project p {
@@ -197,7 +261,7 @@
       color: var(--muted);
       font-size: 0.83rem;
       line-height: 1.3;
-      background: #fbfcfd;
+      background: var(--panel-soft);
     }
 
     .project-figure {
@@ -241,6 +305,156 @@
       font-weight: 700;
     }
 
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 18px;
+    }
+
+    .filter-button {
+      min-height: 36px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 650;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .filter-button:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    .filter-button.is-active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .workflow {
+      margin-top: 4px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+    }
+
+    .workflow summary {
+      min-height: 40px;
+      padding: 8px 11px;
+      cursor: pointer;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .workflow ol {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0 11px 12px;
+      list-style: none;
+    }
+
+    .workflow li {
+      margin: 0;
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      background: var(--panel);
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .gallery-preview {
+      margin: 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-preview img {
+      display: block;
+      width: 100%;
+      max-height: 560px;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .gallery-preview figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .gallery-title {
+      display: block;
+      color: var(--text);
+      font-weight: 750;
+    }
+
+    .gallery-thumbs {
+      display: grid;
+      gap: 9px;
+    }
+
+    .gallery-thumb {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      min-height: 76px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+
+    .gallery-thumb:hover,
+    .gallery-thumb.is-active {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    .gallery-thumb img {
+      width: 72px;
+      height: 54px;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+    }
+
+    .gallery-thumb span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+
     .output-links {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -257,6 +471,13 @@
       background: var(--panel);
       color: var(--text);
       font-weight: 600;
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+
+    .output-links a:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      text-decoration: none;
     }
 
     .output-links span {
@@ -294,6 +515,19 @@
       .project {
         grid-template-columns: 1fr;
       }
+
+      .header-top,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .header-top {
+        display: grid;
+      }
+
+      .theme-toggle {
+        justify-self: start;
+      }
     }
   </style>
 </head>
@@ -301,12 +535,15 @@
 <body>
   <main>
     <header>
-      <div>
-        <h1>Srilaxmi Nerella</h1>
-        <p class="tagline">
-          Single-cell genomics, translational bioinformatics, immune biology,
-          airway disease, cancer tumor microenvironments, and reproducible public-data analysis.
-        </p>
+      <div class="header-top">
+        <div>
+          <h1>Srilaxmi Nerella</h1>
+          <p class="tagline">
+            Single-cell genomics, translational bioinformatics, immune biology,
+            airway disease, cancer tumor microenvironments, and reproducible public-data analysis.
+          </p>
+        </div>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
       </div>
 
       <nav class="quick-links" aria-label="Profile links">
@@ -331,8 +568,16 @@
 
     <section>
       <h2>Featured Projects</h2>
+      <div class="filter-bar" aria-label="Filter projects">
+        <button class="filter-button is-active" type="button" data-filter="all">All</button>
+        <button class="filter-button" type="button" data-filter="single-cell">Single-cell</button>
+        <button class="filter-button" type="button" data-filter="airway">Airway</button>
+        <button class="filter-button" type="button" data-filter="cancer">Cancer</button>
+        <button class="filter-button" type="button" data-filter="workflow">Workflow</button>
+        <button class="filter-button" type="button" data-filter="signatures">Signatures</button>
+      </div>
       <div class="project-grid">
-        <article class="project">
+        <article class="project" data-tags="single-cell airway workflow signatures">
           <div class="project-copy">
             <span class="badge">Airway disease</span>
             <h3>
@@ -357,6 +602,16 @@
               <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/tree/main/docs/tables">Tables</a>
               <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/blob/main/docs/validation_against_original.md">Validation notes</a>
             </div>
+            <details class="workflow">
+              <summary>Workflow steps</summary>
+              <ol>
+                <li>Download GEO h5ad files</li>
+                <li>Curate sample metadata</li>
+                <li>Summarize composition</li>
+                <li>Score epithelial and immune signatures</li>
+                <li>Export pseudo-bulk tables</li>
+              </ol>
+            </details>
           </div>
           <figure class="project-figure">
             <img
@@ -366,7 +621,7 @@
           </figure>
         </article>
 
-        <article class="project">
+        <article class="project" data-tags="single-cell cancer workflow signatures">
           <div class="project-copy">
             <span class="badge">Cancer TME</span>
             <h3>
@@ -391,6 +646,16 @@
               <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/tree/main/docs/tables">Tables</a>
               <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/blob/main/docs/results_summary.md">Results summary</a>
             </div>
+            <details class="workflow">
+              <summary>Workflow steps</summary>
+              <ol>
+                <li>Download GEO annotation and UMI matrix</li>
+                <li>Build sample-aware metadata</li>
+                <li>Summarize tissue-site composition</li>
+                <li>Stream signature genes</li>
+                <li>Run contrasts and sensitivity checks</li>
+              </ol>
+            </details>
           </div>
           <figure class="project-figure">
             <img
@@ -399,6 +664,56 @@
             <figcaption>Tumor microenvironment signature heatmap from the LUAD reanalysis workflow.</figcaption>
           </figure>
         </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Figure Gallery</h2>
+      <div class="gallery">
+        <figure class="gallery-preview">
+          <img
+            data-gallery-image
+            src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png"
+            alt="Heatmap showing tumor microenvironment signature scores by tissue site and cell type">
+          <figcaption data-gallery-caption>
+            <span class="gallery-title">LUAD tumor microenvironment heatmap</span>
+            Signature scores summarized by tissue site and cell type.
+          </figcaption>
+        </figure>
+        <div class="gallery-thumbs" aria-label="Select a figure preview">
+          <button class="gallery-thumb is-active" type="button"
+            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png"
+            data-gallery-alt="Heatmap showing tumor microenvironment signature scores by tissue site and cell type"
+            data-gallery-title="LUAD tumor microenvironment heatmap"
+            data-gallery-text="Signature scores summarized by tissue site and cell type.">
+            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png" alt="">
+            <span>LUAD TME heatmap</span>
+          </button>
+          <button class="gallery-thumb" type="button"
+            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/signature_contrast_effect_sizes.png"
+            data-gallery-alt="Dot plot of sample-level tumor microenvironment signature contrast effect sizes"
+            data-gallery-title="Sample-level signature contrasts"
+            data-gallery-text="Exploratory effect sizes for selected tissue-site comparisons.">
+            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/signature_contrast_effect_sizes.png" alt="">
+            <span>Signature contrasts</span>
+          </button>
+          <button class="gallery-thumb" type="button"
+            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/celltype_composition_stacked_bar.png"
+            data-gallery-alt="Stacked bar plot showing cell-type composition across asthma airway samples"
+            data-gallery-title="Asthma airway composition"
+            data-gallery-text="Sample-level cell-type composition from allergen-challenged airway data.">
+            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/celltype_composition_stacked_bar.png" alt="">
+            <span>Airway composition</span>
+          </button>
+          <button class="gallery-thumb" type="button"
+            data-gallery-src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/aec_signature_scores_by_condition.png"
+            data-gallery-alt="Airway epithelial signature scores by condition"
+            data-gallery-title="Airway epithelial signatures"
+            data-gallery-text="Condition-level epithelial remodeling signature preview.">
+            <img src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/aec_signature_scores_by_condition.png" alt="">
+            <span>Epithelial signatures</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -451,5 +766,65 @@
       <p>Last updated 2026.</p>
     </footer>
   </main>
+  <script>
+    const themeButton = document.querySelector("[data-theme-toggle]");
+    const storage = {
+      get(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch {
+          return null;
+        }
+      },
+      set(key, value) {
+        try {
+          localStorage.setItem(key, value);
+        } catch {
+          return null;
+        }
+      }
+    };
+    const savedTheme = storage.get("theme");
+
+    function setTheme(theme) {
+      document.body.classList.toggle("dark", theme === "dark");
+      themeButton.textContent = theme === "dark" ? "Light" : "Dark";
+      storage.set("theme", theme);
+    }
+
+    setTheme(savedTheme || "light");
+
+    themeButton.addEventListener("click", () => {
+      setTheme(document.body.classList.contains("dark") ? "light" : "dark");
+    });
+
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const projects = document.querySelectorAll("[data-tags]");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selected = button.dataset.filter;
+        filterButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+        projects.forEach((project) => {
+          const tags = project.dataset.tags.split(" ");
+          const show = selected === "all" || tags.includes(selected);
+          project.classList.toggle("is-hidden", !show);
+        });
+      });
+    });
+
+    const galleryImage = document.querySelector("[data-gallery-image]");
+    const galleryCaption = document.querySelector("[data-gallery-caption]");
+    const galleryThumbs = document.querySelectorAll("[data-gallery-src]");
+
+    galleryThumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        galleryThumbs.forEach((item) => item.classList.toggle("is-active", item === thumb));
+        galleryImage.src = thumb.dataset.gallerySrc;
+        galleryImage.alt = thumb.dataset.galleryAlt;
+        galleryCaption.innerHTML = `<span class="gallery-title">${thumb.dataset.galleryTitle}</span>${thumb.dataset.galleryText}`;
+      });
+    });
+  </script>
 </body>
 </html>
