@@ -119,11 +119,17 @@
       gap: 14px;
     }
 
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
     .project {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 330px);
+      gap: 18px;
+      align-items: start;
       padding: 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -132,6 +138,58 @@
 
     .project p {
       color: var(--muted);
+    }
+
+    .project-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 100%;
+    }
+
+    .project-copy p {
+      margin-bottom: 0;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 2px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .project-meta li {
+      margin: 0;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.3;
+      background: #fbfcfd;
+    }
+
+    .project-figure {
+      margin: 0;
+    }
+
+    .project-figure img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .project-figure figcaption {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
     }
 
     .project-links {
@@ -154,6 +212,32 @@
       font-weight: 700;
     }
 
+    .output-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .output-links a {
+      display: block;
+      min-height: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .output-links span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
     ul {
       margin: 0;
       padding-left: 22px;
@@ -171,6 +255,16 @@
       margin-top: 46px;
       color: #687485;
       font-size: 0.94rem;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 40px 18px 38px;
+      }
+
+      .project {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -208,42 +302,100 @@
 
     <section>
       <h2>Featured Projects</h2>
-      <div class="grid">
+      <div class="project-grid">
         <article class="project">
-          <span class="badge">Airway disease</span>
-          <h3>
-            <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis">
-              GSE193816 Asthma Airway Reanalysis
-            </a>
-          </h3>
-          <p>
-            Reproducible reanalysis of allergen-challenged airway single-cell RNA-seq data,
-            focused on epithelial remodeling, immune signatures, sample-level composition,
-            and pseudo-bulk differential expression.
-          </p>
-          <div class="project-links">
-            <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis">Repository</a>
-            <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/tree/main/docs">Preview outputs</a>
+          <div class="project-copy">
+            <span class="badge">Airway disease</span>
+            <h3>
+              <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis">
+                GSE193816 Asthma Airway Reanalysis
+              </a>
+            </h3>
+            <p>
+              Reproducible reanalysis of allergen-challenged airway single-cell RNA-seq data,
+              focused on epithelial remodeling, immune signatures, sample-level composition,
+              and pseudo-bulk differential expression.
+            </p>
+            <ul class="project-meta" aria-label="Asthma project highlights">
+              <li>GEO public dataset</li>
+              <li>Challenge-response design</li>
+              <li>Snakemake workflow</li>
+              <li>Committed preview outputs</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis">Repository</a>
+              <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/tree/main/docs/figures">Figures</a>
+              <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/tree/main/docs/tables">Tables</a>
+              <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/blob/main/docs/validation_against_original.md">Validation notes</a>
+            </div>
           </div>
+          <figure class="project-figure">
+            <img
+              src="https://raw.githubusercontent.com/nsrilaxmi/GSE193816_asthma_reanalysis/main/docs/figures/celltype_composition_stacked_bar.png"
+              alt="Stacked bar plot showing cell-type composition across asthma airway samples">
+            <figcaption>Sample-level cell-type composition preview from the asthma airway reanalysis.</figcaption>
+          </figure>
         </article>
 
         <article class="project">
-          <span class="badge">Cancer TME</span>
-          <h3>
-            <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis">
-              GSE131907 Lung Adenocarcinoma TME Reanalysis
-            </a>
-          </h3>
-          <p>
-            Sample-aware reanalysis of a public lung adenocarcinoma scRNA-seq atlas,
-            including tissue-site composition and expression-based tumor microenvironment
-            signature scoring.
-          </p>
-          <div class="project-links">
-            <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis">Repository</a>
-            <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/tree/main/docs">Preview outputs</a>
+          <div class="project-copy">
+            <span class="badge">Cancer TME</span>
+            <h3>
+              <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis">
+                GSE131907 Lung Adenocarcinoma TME Reanalysis
+              </a>
+            </h3>
+            <p>
+              Sample-aware reanalysis of a public lung adenocarcinoma scRNA-seq atlas,
+              including tissue-site composition, expression-based tumor microenvironment
+              signatures, subtype summaries, and paired-patient sensitivity checks.
+            </p>
+            <ul class="project-meta" aria-label="Cancer project highlights">
+              <li>208k cells</li>
+              <li>58 samples</li>
+              <li>Signature scoring</li>
+              <li>Paired sensitivity checks</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis">Repository</a>
+              <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/tree/main/docs/figures">Figures</a>
+              <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/tree/main/docs/tables">Tables</a>
+              <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/blob/main/docs/results_summary.md">Results summary</a>
+            </div>
           </div>
+          <figure class="project-figure">
+            <img
+              src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png"
+              alt="Heatmap showing tumor microenvironment signature scores by tissue site and cell type">
+            <figcaption>Tumor microenvironment signature heatmap from the LUAD reanalysis workflow.</figcaption>
+          </figure>
         </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Reproducible Outputs</h2>
+      <p>
+        These projects emphasize readable code, documented assumptions, and small committed previews
+        that make the analysis reviewable without uploading large GEO data files.
+      </p>
+      <div class="output-links">
+        <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/tree/main/workflow">
+          Asthma workflow
+          <span>Snakemake file and workflow notes.</span>
+        </a>
+        <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/tree/main/workflow">
+          Cancer workflow
+          <span>Lightweight and full expression targets.</span>
+        </a>
+        <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/blob/main/docs/output_guide.md">
+          Output guide
+          <span>File-by-file guide to committed figures and tables.</span>
+        </a>
+        <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/blob/main/notebooks/01_dataset_overview.ipynb">
+          Example notebook
+          <span>Interactive overview for the LUAD dataset.</span>
+        </a>
       </div>
     </section>
 
