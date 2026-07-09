@@ -363,41 +363,6 @@
       color: var(--accent);
     }
 
-    .workflow {
-      margin-top: 4px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel-soft);
-    }
-
-    .workflow summary {
-      min-height: 40px;
-      padding: 8px 11px;
-      cursor: pointer;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .workflow ol {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
-      gap: 8px;
-      margin: 0;
-      padding: 0 11px 12px;
-      list-style: none;
-    }
-
-    .workflow li {
-      margin: 0;
-      padding: 8px 9px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      color: var(--muted);
-      background: var(--panel);
-      font-size: 0.88rem;
-      line-height: 1.35;
-    }
-
     .gallery {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
@@ -628,8 +593,8 @@
           <h1>Srilaxmi Nerella</h1>
           <p class="tagline">
             I work at the intersection of computational biology and translational research,
-            with a focus on single-cell RNA-seq, immune profiling, and reproducible
-            reanalysis of public disease datasets.
+            using single-cell genomics and reproducible public-data analysis to study immune
+            and epithelial programs in disease.
           </p>
         </div>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
@@ -661,13 +626,13 @@
               </a>
             </h3>
             <p>
-              Independent reanalysis of allergen-challenged airway scRNA-seq data,
-              emphasizing epithelial remodeling, immune signatures, and donor-aware interpretation.
+              Allergen-challenge airway scRNA-seq reanalysis focused on epithelial remodeling,
+              immune signatures, and donor-aware interpretation.
             </p>
             <ul class="project-meta" aria-label="Asthma project highlights">
               <li>GEO public dataset</li>
               <li>Challenge-response design</li>
-              <li>Snakemake workflow</li>
+              <li>Reproducible code</li>
               <li>Committed preview outputs</li>
             </ul>
             <div class="project-links">
@@ -676,16 +641,6 @@
               <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/tree/main/docs/tables">Tables</a>
               <a href="https://github.com/nsrilaxmi/GSE193816_asthma_reanalysis/blob/main/docs/validation_against_original.md">Validation notes</a>
             </div>
-            <details class="workflow">
-              <summary>Workflow steps</summary>
-              <ol>
-                <li>Download GEO h5ad files</li>
-                <li>Curate sample metadata</li>
-                <li>Summarize composition</li>
-                <li>Score epithelial and immune signatures</li>
-                <li>Export pseudo-bulk tables</li>
-              </ol>
-            </details>
           </div>
           <figure class="project-figure">
             <img
@@ -704,8 +659,8 @@
               </a>
             </h3>
             <p>
-              Sample-aware analysis of a lung adenocarcinoma scRNA-seq atlas, focused on
-              tissue-site composition, tumor microenvironment signatures, and sensitivity checks.
+              Lung adenocarcinoma scRNA-seq reanalysis focused on tissue-site composition,
+              tumor microenvironment signatures, and sensitivity checks.
             </p>
             <ul class="project-meta" aria-label="Cancer project highlights">
               <li>208k cells</li>
@@ -719,22 +674,12 @@
               <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/tree/main/docs/tables">Tables</a>
               <a href="https://github.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/blob/main/docs/results_summary.md">Results summary</a>
             </div>
-            <details class="workflow">
-              <summary>Workflow steps</summary>
-              <ol>
-                <li>Download GEO annotation and UMI matrix</li>
-                <li>Build sample-aware metadata</li>
-                <li>Summarize tissue-site composition</li>
-                <li>Stream signature genes</li>
-                <li>Run contrasts and sensitivity checks</li>
-              </ol>
-            </details>
           </div>
           <figure class="project-figure">
             <img
               src="https://raw.githubusercontent.com/nsrilaxmi/GSE131907_luad_tme_reanalysis/main/docs/figures/tme_signature_heatmap_by_site_celltype.png"
               alt="Heatmap showing tumor microenvironment signature scores by tissue site and cell type">
-            <figcaption>Tumor microenvironment signature heatmap from the LUAD reanalysis workflow.</figcaption>
+            <figcaption>Tumor microenvironment signature heatmap from the LUAD reanalysis.</figcaption>
           </figure>
         </article>
       </div>
@@ -793,8 +738,8 @@
     <section id="publications">
       <h2>Selected Publications</h2>
       <p>
-        A compact set of recent and representative publications connected to fibrosis,
-        airway biology, immunology, genomics, and single-cell analysis.
+        Recent and representative work connected to fibrosis, airway biology,
+        immunology, genomics, and single-cell analysis.
       </p>
       <div class="publication-list">
         <article class="publication">
