@@ -528,6 +528,12 @@
       line-height: 1.55;
     }
 
+    .science-note-answer {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
     .output-links {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -882,6 +888,10 @@
           <p class="science-note-text" data-note-text>
             Why do two patients with the same diagnosis sometimes show completely different immune-cell programs?
           </p>
+          <p class="science-note-answer" data-note-answer>
+            Short answer: diagnosis groups can hide differences in genetics, exposures,
+            treatment history, tissue sampling, and cell-state composition.
+          </p>
         </div>
       </div>
     </section>
@@ -952,25 +962,53 @@
 
     const scienceNotes = {
       question: [
-        "Why do two patients with the same diagnosis sometimes show completely different immune-cell programs?",
-        "When does a disease signal come from cell-type abundance, and when does it come from altered gene expression within the same cell type?",
-        "How much of an apparent single-cell result is biology, and how much is donor structure or sampling?"
+        {
+          text: "Why do two patients with the same diagnosis sometimes show completely different immune-cell programs?",
+          answer: "Short answer: diagnosis groups can hide differences in genetics, exposures, treatment history, tissue sampling, and cell-state composition."
+        },
+        {
+          text: "When does a disease signal come from cell-type abundance, and when does it come from altered gene expression within the same cell type?",
+          answer: "Short answer: both can be true. That is why composition summaries and within-cell-type expression analyses should be interpreted together."
+        },
+        {
+          text: "How much of an apparent single-cell result is biology, and how much is donor structure or sampling?",
+          answer: "Short answer: sample-aware analysis helps separate robust disease patterns from effects driven by one donor, batch, or tissue collection context."
+        }
       ],
       fact: [
-        "Single-cell RNA-seq usually measures a sparse snapshot of each cell, so missing expression can be part of the data-generating process.",
-        "In most multi-sample single-cell studies, cells are observations, but donors are the biological replicates.",
-        "A heatmap is often best treated as a hypothesis generator, not as the final verdict."
+        {
+          text: "Single-cell RNA-seq usually measures a sparse snapshot of each cell, so missing expression can be part of the data-generating process.",
+          answer: "Why it matters: absence of a transcript in one cell does not always mean the gene is biologically off."
+        },
+        {
+          text: "In most multi-sample single-cell studies, cells are observations, but donors are the biological replicates.",
+          answer: "Why it matters: treating thousands of cells as thousands of independent patients can make results look stronger than they are."
+        },
+        {
+          text: "A heatmap is often best treated as a hypothesis generator, not as the final verdict.",
+          answer: "Why it matters: strong visual patterns should still be checked against sample size, donor effects, and statistical summaries."
+        }
       ],
       tip: [
-        "Before interpreting a signature score, check whether the pattern is stable at the sample or donor level.",
-        "Composition plots are not just descriptive; they can explain why downstream expression results look the way they do.",
-        "For public GEO reanalysis, the strongest work often starts with careful metadata curation."
+        {
+          text: "Before interpreting a signature score, check whether the pattern is stable at the sample or donor level.",
+          answer: "Practical takeaway: a beautiful per-cell pattern is more convincing when it survives aggregation."
+        },
+        {
+          text: "Composition plots are not just descriptive; they can explain why downstream expression results look the way they do.",
+          answer: "Practical takeaway: cell abundance shifts can create or obscure disease-associated signals."
+        },
+        {
+          text: "For public GEO reanalysis, the strongest work often starts with careful metadata curation.",
+          answer: "Practical takeaway: clean sample labels and transparent assumptions make downstream biology easier to trust."
+        }
       ]
     };
 
     const noteButtons = document.querySelectorAll("[data-note-kind]");
     const noteLabel = document.querySelector("[data-note-label]");
     const noteText = document.querySelector("[data-note-text]");
+    const noteAnswer = document.querySelector("[data-note-answer]");
     let noteIndex = 0;
 
     noteButtons.forEach((button) => {
@@ -978,9 +1016,11 @@
         const kind = button.dataset.noteKind;
         const choices = scienceNotes[kind];
         noteIndex = (noteIndex + 1) % choices.length;
+        const note = choices[noteIndex];
         noteButtons.forEach((item) => item.classList.toggle("is-active", item === button));
         noteLabel.textContent = button.textContent;
-        noteText.textContent = choices[noteIndex];
+        noteText.textContent = note.text;
+        noteAnswer.textContent = note.answer;
       });
     });
   </script>
